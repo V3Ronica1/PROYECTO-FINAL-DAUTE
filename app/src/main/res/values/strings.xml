@@ -40,4 +40,9 @@
     <string name="Fecha">00/00/000</string>
     <string name="Estado">No finalizado</string>
 
+    <!--Cuadro de Dialogo Opciones-->
+    <string name="ElijaOpcionTXT">Elija una opcion</string>
+    <string name="CD_Eliminar">Eliminar</string>
+    <string name="CD_Actualizar">Actualizar</string>
+
 </resources>
