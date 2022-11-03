@@ -84,5 +84,6 @@ public class Agregar_Notas extends AppCompatActivity {
     }
 
     private void Inicializarvariables() {
+
     }
 }
