@@ -19,7 +19,7 @@
     <string name="Cerrarsesion">Salir</string>
 
     <!--Activdad Login-->
-    <string name="IniciarSesionTxt">Inciar sesion</string>
+    <string name="IniciarSesionTxt">Iniciar sesion</string>
     <string name="CorreoLogin">Correo</string>
     <string name="PassLogin">Contraseña</string>
     <string name="Btn_Logeo">Ingresar</string>
