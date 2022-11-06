@@ -1,23 +1,43 @@
 package com.vg.agenda_online;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.MenuPrincipal;
+import com.Registro;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Calendar;
+import java.util.HashMap;
 
 public class Agregar_Notas extends AppCompatActivity {
 
     TextView Uid_usuario, correo_usuario, fecha_hora, date, result;
     EditText titulo, descripcion;
     Button calender;
+
+    FirebaseAuth firebaseAuth;
+    ProgressDialog progressDialog;
+
+    //
+    String titu= " ", des=" ", fcha= " ", resulta= " ";
 
     int dia, mes, anio;
 
@@ -27,9 +47,9 @@ public class Agregar_Notas extends AppCompatActivity {
         setContentView(R.layout.activity_agregar_notas);
 
         ActionBar actionBar = getSupportActionBar();
-        //ActionBar.setTitle("");
-        //ActionBar.setDisplayShowHomeEnabled(true);
-        //ActionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setTitle("Agregar nota");
+        actionBar.setDisplayShowHomeEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
         Inicializarvariables();
         obtenerDatos();
@@ -75,12 +95,50 @@ public class Agregar_Notas extends AppCompatActivity {
             }
         });
 
+
+        GuardarInformacion();
     }
+
+
+    private void GuardarInformacion() {
+
+        //Obtener la identificacion de usuario actual
+        String uid = firebaseAuth.getUid();
+
+        HashMap<String, String> Datos = new HashMap<>();
+        Datos.put("uid", uid);
+        Datos.put("titulo", titu);
+        Datos.put("descripcion", des );
+        Datos.put("fecha", fcha);
+        Datos.put("resultado", resulta);
+
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Notas");
+        databaseReference.child(uid)
+                .setValue(Datos)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        progressDialog.dismiss();
+                        Toast.makeText(Agregar_Notas.this, "Nota agregada exitosamente", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(Agregar_Notas.this, MenuPrincipal.class));
+                        finish();
+
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        progressDialog.dismiss();
+                        Toast.makeText(Agregar_Notas.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
 
     private void obtener_fecha_hora_actual() {
     }
 
     private void obtenerDatos() {
+
     }
 
     private void Inicializarvariables() {
