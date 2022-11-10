@@ -8,7 +8,7 @@ public class Dto_notas {
   int estado;
   Date fecha_hora_actual;
   Date fecha_nota;
-  int id_nota;
+  String id_nota;
   String titulo;
 
   public String getCorreo_usario() {
@@ -51,11 +51,11 @@ public class Dto_notas {
     this.fecha_nota = fecha_nota;
   }
 
-  public int getId_nota() {
+  public String getId_nota() {
     return id_nota;
   }
 
-  public void setId_nota(int id_nota) {
+  public void setId_nota(String id_nota) {
     this.id_nota = id_nota;
   }
 

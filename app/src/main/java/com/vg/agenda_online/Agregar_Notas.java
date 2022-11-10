@@ -8,6 +8,8 @@ import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -15,10 +17,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.Importantes.Importante_Notas;
 import com.MenuPrincipal;
+import com.Objetos.Dto_notas;
 import com.Registro;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -26,6 +31,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.UUID;
 
 public class Agregar_Notas extends AppCompatActivity {
 
@@ -33,7 +39,10 @@ public class Agregar_Notas extends AppCompatActivity {
     EditText titulo, descripcion;
     Button calender;
 
-    FirebaseAuth firebaseAuth;
+
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference databaseReference;
+
     ProgressDialog progressDialog;
 
     //
@@ -51,9 +60,21 @@ public class Agregar_Notas extends AppCompatActivity {
         actionBar.setDisplayShowHomeEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-        Inicializarvariables();
-        obtenerDatos();
-        obtener_fecha_hora_actual();
+        Uid_usuario=findViewById(R.id.id_usuario);
+        correo_usuario=findViewById(R.id.correo_user);
+        fecha_hora=findViewById(R.id.fecha_hora);
+        titulo=findViewById(R.id.titulo);
+        descripcion=findViewById(R.id.descripcion);
+        calender=findViewById(R.id.calender);
+        result=findViewById(R.id.result);
+
+        inicializarFirebase();
+
+      //  Inicializarvariables();
+        // obtenerDatos();
+       // obtener_fecha_hora_actual();
+
+
 
         calender.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,7 +108,6 @@ public class Agregar_Notas extends AppCompatActivity {
                         //Setear Fecha
                         date.setText(diaFormateado + "/" + mesFormateado + "/" + AnioSeleccionado);
 
-
                     }
                 }
                 , anio, mes, dia);
@@ -96,52 +116,85 @@ public class Agregar_Notas extends AppCompatActivity {
         });
 
 
-        GuardarInformacion();
+    }
+
+    private void inicializarFirebase() {
+        FirebaseApp.initializeApp(this);
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        String titu = titulo.getText().toString();
+        String des = descripcion.getText().toString();
+
+        switch (item.getItemId()){
+            case R.id.icon_add:{
+                if (titu.equals("")|| des.equals("")){
+                    validacion();
+                    startActivity(new Intent(Agregar_Notas.this, MenuPrincipal.class));
+                }
+                else {
+                    Dto_notas notas = new Dto_notas();
+                    notas.setId_nota(UUID.randomUUID().toString());
+                    notas.setTitulo(titu);
+                    notas.setDescripcion(des);
+                    databaseReference.child("Notas Agregadas").child(notas.getId_nota()).setValue(notas);
+                    Toast.makeText(this, "Agregar", Toast.LENGTH_SHORT).show();
+                    limpiar();
+
+                }
+                break;
+            }
+            case R.id.icon_save:{
+                Toast.makeText(this, "Guardar", Toast.LENGTH_SHORT).show();
+                break;
+            }
+            default:break;
+        }
+
+        return true;
+    }
+
+    private void limpiar() {
+        titulo.setText("");
+        descripcion.setText("");
+    }
+
+    private void validacion() {
+        String titu = titulo.getText().toString();
+        String des = descripcion.getText().toString();
+
+
+        if (titu.equals("")){
+            titulo.setError("Required");
+        }
+        else if (des.equals("")){
+            titulo.setError("Required");
+        }
+
     }
 
 
-    private void GuardarInformacion() {
 
-        //Obtener la identificacion de usuario actual
-        String uid = firebaseAuth.getUid();
+    //private void obtener_fecha_hora_actual() {}
 
-        HashMap<String, String> Datos = new HashMap<>();
-        Datos.put("uid", uid);
-        Datos.put("titulo", titu);
-        Datos.put("descripcion", des );
-        Datos.put("fecha", fcha);
-        Datos.put("resultado", resulta);
+   // private void obtenerDatos() {}
 
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Notas");
-        databaseReference.child(uid)
-                .setValue(Datos)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void unused) {
-                        progressDialog.dismiss();
-                        Toast.makeText(Agregar_Notas.this, "Nota agregada exitosamente", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(Agregar_Notas.this, MenuPrincipal.class));
-                        finish();
-
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        progressDialog.dismiss();
-                        Toast.makeText(Agregar_Notas.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                });
+    //private void Inicializarvariables() {}
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return super.onSupportNavigateUp();
     }
 
 
-    private void obtener_fecha_hora_actual() {
-    }
-
-    private void obtenerDatos() {
-
-    }
-
-    private void Inicializarvariables() {
-
-    }
 }
+

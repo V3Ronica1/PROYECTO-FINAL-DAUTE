@@ -107,7 +107,7 @@ public class Registro extends AppCompatActivity {
         progressDialog.setMessage("Creando su cuenta..");
         progressDialog.show();
 
-        //Crear un usuario en firebase
+        //Crera un usuario en firebase
         firebaseAuth.createUserWithEmailAndPassword(correo,password)
                 .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                     @Override
@@ -165,4 +165,5 @@ public class Registro extends AppCompatActivity {
         onBackPressed();
         return super.onSupportNavigateUp();
     }
+
 }

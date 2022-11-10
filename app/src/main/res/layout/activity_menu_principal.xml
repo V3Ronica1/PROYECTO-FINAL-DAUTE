@@ -80,7 +80,7 @@
 
 
         <Button
-            android:id="@+id/btnagregar"
+            android:id="@+id/btn_Agregar"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:text="Agregar" />
@@ -93,7 +93,7 @@
 
 
         <Button
-            android:id="@+id/btnmisnotas"
+            android:id="@+id/btn_Misnotas"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:text="Mis Notas" />
@@ -116,7 +116,7 @@
 
 
             <Button
-                android:id="@+id/btnimportantes"
+                android:id="@+id/btn_Importantes"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:text="Importantes" />
@@ -129,7 +129,7 @@
 
 
             <Button
-                android:id="@+id/btncontacto"
+                android:id="@+id/btn_Contacto"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:text="Mis Contactos" />
@@ -152,7 +152,7 @@
 
 
             <Button
-                android:id="@+id/btnacerca"
+                android:id="@+id/btn_Acerca"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:text="Acerca De" />

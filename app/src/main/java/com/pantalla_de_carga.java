@@ -10,6 +10,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.vg.agenda_online.R;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class pantalla_de_carga extends AppCompatActivity {
 
     FirebaseAuth firebaseAuth;
@@ -45,4 +48,9 @@ public class pantalla_de_carga extends AppCompatActivity {
             finish();
         }
     }
+
+    public static String dateToString(Date date){
+     return    new SimpleDateFormat("MM/dd/yyyy").format(date.toString());
+    }
+
 }

@@ -13,36 +13,35 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Agenda_Online"
         tools:targetApi="31">
+
         <activity
-<<<<<<< HEAD
-            android:name=".MainActivity2"
+            android:name="com.ListarNotas.Listar_notas"
+            android:exported="false"/>
+
+           <activity android:name="com.Contacto.Contactos"
             android:exported="false" />
         <activity
-            android:name=".ListarNotas.Listar_notas"
-=======
-            android:name=".Contactos"
+            android:name="com.Importantes.Importante_Notas"
             android:exported="false" />
         <activity
-            android:name=".Importante_Notas"
+            android:name="com.Acerca.Acerca_de"
             android:exported="false" />
-        <activity
-            android:name="com.ListarNotas.Listar_Notas"
->>>>>>> a6848d1aa6121eff0f333caffcf8f7245bd0af63
-            android:exported="false" />
+
+
         <activity
             android:name=".Agregar_Notas"
             android:exported="false" />
         <activity
-            android:name=".MenuPrincipal"
+            android:name="com.MenuPrincipal"
             android:exported="false" />
         <activity
-            android:name=".Registro"
+            android:name="com.Registro"
             android:exported="false" />
         <activity
-            android:name=".Login"
+            android:name="com.Login"
             android:exported="false" />
         <activity
-            android:name=".pantalla_de_carga"
+            android:name="com.pantalla_de_carga"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -51,7 +50,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name="com.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
