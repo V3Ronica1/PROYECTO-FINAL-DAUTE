@@ -6,13 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
-import com.Acerca.Acerca_de;
-import com.Contacto.Contactos;
-import com.Importantes.Importante_Notas;
-import com.ListarNotas.Listar_notas;
-import com.vg.agenda_online.Agregar_Notas;
 import com.vg.agenda_online.R;
 
 public class MainActivity extends AppCompatActivity {
