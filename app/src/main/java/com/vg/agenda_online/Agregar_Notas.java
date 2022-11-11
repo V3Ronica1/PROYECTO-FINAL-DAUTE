@@ -30,7 +30,7 @@ public class Agregar_Notas extends AppCompatActivity {
 
     TextView Uid_usuario, correo_usuario, fecha_hora, date, result;
     EditText titulo, descripcion;
-    Button calender;
+    Button calender,btnagregar;
 
 
     FirebaseDatabase firebaseDatabase;
@@ -49,27 +49,28 @@ public class Agregar_Notas extends AppCompatActivity {
         setContentView(R.layout.activity_agregar_notas);
 
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle("Agregar nota");
-        actionBar.setDisplayShowHomeEnabled(true);
-        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setTitle("Agregar notas");
+       // actionBar.setDisplayShowHomeEnabled(true);
+      //  actionBar.setDisplayHomeAsUpEnabled(true);
 
-        Uid_usuario=findViewById(R.id.id_usuario);
+        btnagregar=findViewById(R.id.btn_Agregar);
+         Uid_usuario=findViewById(R.id.id_usuario);
         correo_usuario=findViewById(R.id.correo_user);
         fecha_hora=findViewById(R.id.fecha_hora);
         titulo=findViewById(R.id.titulo);
         descripcion=findViewById(R.id.descripcion);
         calender=findViewById(R.id.calender);
         result=findViewById(R.id.result);
+        date=findViewById(R.id.date);
 
         inicializarFirebase();
 
-      //  Inicializarvariables();
+        //  Inicializarvariables();
         // obtenerDatos();
-       // obtener_fecha_hora_actual();
+        // obtener_fecha_hora_actual();
 
 
-
-        calender.setOnClickListener(new View.OnClickListener() {
+      calender.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 final Calendar calendario = Calendar.getInstance();
@@ -107,10 +108,7 @@ public class Agregar_Notas extends AppCompatActivity {
                 datePickerDialog.show();
             }
         });
-
-
     }
-
     private void inicializarFirebase() {
         FirebaseApp.initializeApp(this);
         firebaseDatabase = FirebaseDatabase.getInstance();
@@ -121,6 +119,7 @@ public class Agregar_Notas extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main,menu);
         return super.onCreateOptionsMenu(menu);
+
     }
 
     @Override
@@ -132,7 +131,7 @@ public class Agregar_Notas extends AppCompatActivity {
             case R.id.icon_add:{
                 if (titu.equals("")|| des.equals("")){
                     validacion();
-                    startActivity(new Intent(Agregar_Notas.this, MenuPrincipal.class));
+
                 }
                 else {
                     Dto_notas notas = new Dto_notas();
@@ -149,6 +148,10 @@ public class Agregar_Notas extends AppCompatActivity {
             case R.id.icon_save:{
                 Toast.makeText(this, "Guardar", Toast.LENGTH_SHORT).show();
                 break;
+            }
+            case R.id.icon_atras:{
+               Intent intent = new Intent(Agregar_Notas.this,MenuPrincipal.class);
+               startActivity(intent);
             }
             default:break;
         }
@@ -176,18 +179,16 @@ public class Agregar_Notas extends AppCompatActivity {
     }
 
 
-
     //private void obtener_fecha_hora_actual() {}
 
    // private void obtenerDatos() {}
 
     //private void Inicializarvariables() {}
+
     @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return super.onSupportNavigateUp();
     }
-
-
 }
 

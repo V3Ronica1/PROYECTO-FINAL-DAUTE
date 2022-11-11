@@ -13,11 +13,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.Acerca.Acerca_de;
 import com.Contacto.Contactos;
 import com.Importantes.Importante_Notas;
+import com.ListarNotas.Listar_Notas;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.vg.agenda_online.Agregar_Notas;
@@ -26,11 +28,14 @@ import com.vg.agenda_online.R;
 public class MenuPrincipal extends AppCompatActivity {
 
     Button CerrarSesion;
-    FirebaseAuth firebaseAuth;
-    FirebaseUser user;
+
     TextView NombrePrincipal, CorreoPrincipal;
-    DatabaseReference Usuarios;
     Button btnagregar, btnmisnotas, btnimportantes, btncontacto, btnacerca, btnsalir;
+
+    FirebaseDatabase firebaseDatabase;
+    FirebaseAuth firebaseAuth;
+    FirebaseUser firebaseUser;
+    DatabaseReference BASE_DE_DATOS;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +44,9 @@ public class MenuPrincipal extends AppCompatActivity {
 
         CerrarSesion=findViewById(R.id.btnsalir);
         firebaseAuth=FirebaseAuth.getInstance();
-        user=firebaseAuth.getCurrentUser();
+        firebaseUser = firebaseAuth.getCurrentUser();
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        BASE_DE_DATOS = firebaseDatabase.getReference("Usuarios");
 
         btnagregar=findViewById(R.id.btn_Agregar);
         btnmisnotas=findViewById(R.id.btn_Misnotas);
@@ -97,31 +104,31 @@ public class MenuPrincipal extends AppCompatActivity {
     //Metodo para verificar si el usuario a iniciado seccion
 
     //Metodo para recuperar datos del usuario
-    private void CargarDatos(){
-        Query query = Usuarios.orderByChild("correo").equalTo(firebaseAuth.getUid());
-        query.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
+   // private void CargarDatos(){
+     //   Query query = BASE_DE_DATOS.orderByChild("correo").equalTo(firebaseUser);
+     //   query.addValueEventListener(new ValueEventListener() {
+         //   @Override
+          //  public void onDataChange(@NonNull DataSnapshot snapshot) {
                 //Recorremo, los usuarios en la base de datos
-                for (DataSnapshot ds : snapshot.getChildren()){
+            //    for (DataSnapshot ds : snapshot.getChildren()){
 
                     //Obteniendo valores
-                    String NombrePrincipal = ""+ds.child("NombrePrincipal").getValue();
-                    String CorreoPrincipal = ""+ds.child("CorreoPrincipal").getValue();
+                  //  String uid= ""+ds.child("uid").getValue();
+                 //   String correo = ""+ds.child("correo").getValue();
 
                     //Seteamos los datos
 
 
                     //Declaramos los datos
-                }
-            }
+           //     }
+          //  }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+       //     @Override
+        //    public void onCancelled(@NonNull DatabaseError error) {
 
-            }
-        });
-    }
+        //    }
+       // });
+    //}
 
     private void SalirAplicacion() {
         firebaseAuth.signOut();

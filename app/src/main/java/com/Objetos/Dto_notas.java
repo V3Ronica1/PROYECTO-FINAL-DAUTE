@@ -66,4 +66,9 @@ public class Dto_notas {
   public void setTitulo(String titulo) {
     this.titulo = titulo;
   }
+
+  @Override
+  public String toString(){ return descripcion;}
+
+
 }

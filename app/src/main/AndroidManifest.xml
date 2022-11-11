@@ -14,7 +14,12 @@
         android:theme="@style/Theme.Agenda_Online"
         tools:targetApi="31">
 
-       
+
+        <activity android:name ="com.Contacto.Contactos"
+            android:exported="false"/>
+
+        <activity android:name="com.ListarNotas.Listar_Notas"
+            android:exported="false" />
 
         <activity
             android:name="com.Importantes.Importante_Notas"
@@ -58,3 +63,5 @@
     </application>
 
 </manifest>
+
+
