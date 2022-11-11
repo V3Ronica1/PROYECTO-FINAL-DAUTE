@@ -1,7 +1,11 @@
 package com;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -41,6 +45,10 @@ public class MenuPrincipal extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_principal);
+
+        LayoutInflater imagen_acerca_de = LayoutInflater.from(MenuPrincipal.this);
+        final View vista = imagen_acerca_de.inflate(R.layout.activity_acerca_de, null);
+
 
         CerrarSesion=findViewById(R.id.btnsalir);
         firebaseAuth=FirebaseAuth.getInstance();
@@ -86,12 +94,42 @@ public class MenuPrincipal extends AppCompatActivity {
                 startActivity(new Intent(MenuPrincipal.this, Contactos.class));
             }
         });
+
         btnacerca.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MenuPrincipal.this, Acerca_de.class));
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(MenuPrincipal.this);
+                builder.setMessage("Veronica Yamilet Panameño              "+
+                                  "Neftaly Eleazar Calderon                    "+
+                                  "Cristina Francisca Argueta                  "+
+                                  "Elias Ismael Panameño")
+                        /*.setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                Intent intent = new Intent(Intent.ACTION_MAIN);
+                                intent.addCategory(Intent.CATEGORY_HOME);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                startActivity(intent);
+                            }
+                        })*/
+                        .setNegativeButton("Cerrar", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.dismiss();
+                            }
+                        });
+                /*AlertDialog titulo = builder.create();
+                titulo.setTitle("Autores");
+                titulo.setView(vista);*/
+                builder.show();
             }
+
         });
+
+
+
+
         CerrarSesion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -131,10 +169,29 @@ public class MenuPrincipal extends AppCompatActivity {
     //}
 
     private void SalirAplicacion() {
-        firebaseAuth.signOut();
-        startActivity(new Intent(MenuPrincipal.this, MainActivity.class));
-        Toast.makeText(this, "Cerraste sesion exitosamente", Toast.LENGTH_SHORT).show();
 
+        AlertDialog.Builder builder = new AlertDialog.Builder(MenuPrincipal.this);
+        builder.setMessage("¿Seguro que desea salir?")
+                .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Intent intent = new Intent(Intent.ACTION_MAIN);
+                        intent.addCategory(Intent.CATEGORY_HOME);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(new Intent(MenuPrincipal.this, MainActivity.class));
+                        Toast.makeText(MenuPrincipal.this, "Sesion cerrada exitosamente", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                });
+        builder.show();
+
+        firebaseAuth.signOut();
+        
     }
 
 
