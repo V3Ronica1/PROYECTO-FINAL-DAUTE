@@ -1,13 +1,13 @@
 package com.Objetos;
 
-import java.util.Date;
+import java.io.Serializable;
 
-public class Dto_notas {
+public class Dto_notas implements Serializable {
   String correo_usario;
   String descripcion;
   int estado;
-  Date fecha_hora_actual;
-  Date fecha_nota;
+  String fecha_hora_actual;
+  String fecha_nota;
   String id_nota;
   String titulo;
 
@@ -35,19 +35,19 @@ public class Dto_notas {
     this.estado = estado;
   }
 
-  public Date getFecha_hora_actual() {
+  public String getFecha_hora_actual() {
     return fecha_hora_actual;
   }
 
-  public void setFecha_hora_actual(Date fecha_hora_actual) {
+  public void setFecha_hora_actual(String fecha_hora_actual) {
     this.fecha_hora_actual = fecha_hora_actual;
   }
 
-  public Date getFecha_nota() {
+  public String getFecha_nota() {
     return fecha_nota;
   }
 
-  public void setFecha_nota(Date fecha_nota) {
+  public void setFecha_nota(String fecha_nota) {
     this.fecha_nota = fecha_nota;
   }
 
@@ -68,7 +68,7 @@ public class Dto_notas {
   }
 
   @Override
-  public String toString(){ return descripcion;}
+  public String toString(){ return titulo;}
 
 
 }

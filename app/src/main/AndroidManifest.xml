@@ -13,29 +13,27 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Agenda_Online"
         tools:targetApi="31">
-
-
-        <activity android:name ="com.Contacto.Contactos"
-            android:exported="false"/>
-
-        <activity android:name="com.ListarNotas.Listar_Notas"
+        <activity
+            android:name="com.Detalles.Detalles_Notas"
             android:exported="false" />
-
+        <activity
+            android:name="com.Contacto.Contactos"
+            android:exported="false" />
+        <activity
+            android:name="com.ListarNotas.Listar_Notas"
+            android:exported="false" />
         <activity
             android:name="com.Importantes.Importante_Notas"
             android:exported="false" />
         <activity
             android:name="com.Acerca.Acerca_de"
             android:exported="false" />
-
         <activity
             android:name="com.MenuPrincipal"
             android:exported="false" />
-
         <activity
             android:name=".Agregar_Notas"
             android:exported="false" />
-
         <activity
             android:name="com.Registro"
             android:exported="false" />
@@ -63,5 +61,3 @@
     </application>
 
 </manifest>
-
-
