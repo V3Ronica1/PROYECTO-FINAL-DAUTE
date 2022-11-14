@@ -9,6 +9,7 @@
         <entry key="..\:/Users/MINEDUCYT/AndroidStudioProjects/Agenda_Online/app/src/main/res/layout/activity_agregar_notas.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/MINEDUCYT/AndroidStudioProjects/Agenda_Online/app/src/main/res/layout/activity_contactos.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/MINEDUCYT/AndroidStudioProjects/Agenda_Online/app/src/main/res/layout/activity_contactos2.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/MINEDUCYT/AndroidStudioProjects/Agenda_Online/app/src/main/res/layout/activity_detalles_notas.xml" value="0.25" />
         <entry key="..\:/Users/MINEDUCYT/AndroidStudioProjects/Agenda_Online/app/src/main/res/layout/activity_importante_notas.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/MINEDUCYT/AndroidStudioProjects/Agenda_Online/app/src/main/res/layout/activity_listar_notas.xml" value="0.19010416666666666" />
         <entry key="..\:/Users/MINEDUCYT/AndroidStudioProjects/Agenda_Online/app/src/main/res/layout/activity_listar_notas2.xml" value="0.20416666666666666" />
@@ -19,16 +20,11 @@
         <entry key="..\:/Users/MINEDUCYT/AndroidStudioProjects/Agenda_Online/app/src/main/res/layout/activity_menu_principal2.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/MINEDUCYT/AndroidStudioProjects/Agenda_Online/app/src/main/res/layout/activity_pantalla_de_carga.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/MINEDUCYT/AndroidStudioProjects/Agenda_Online/app/src/main/res/layout/activity_registro.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/MINEDUCYT/AndroidStudioProjects/Agenda_Online/app/src/main/res/layout/dialogo_opciones.xml" value="0.1" />
+        <entry key="..\:/Users/MINEDUCYT/AndroidStudioProjects/Agenda_Online/app/src/main/res/layout/dialogo_opciones.xml" value="0.25" />
         <entry key="..\:/Users/MINEDUCYT/AndroidStudioProjects/Agenda_Online/app/src/main/res/layout/listar_notas.xml" value="0.19010416666666666" />
         <entry key="..\:/Users/MINEDUCYT/AndroidStudioProjects/Agenda_Online/app/src/main/res/layout/recycle_rview.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/MINEDUCYT/AndroidStudioProjects/Agenda_Online/app/src/main/res/layout/recycler_note_item.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/MINEDUCYT/AndroidStudioProjects/Agenda_Online/app/src/main/res/menu/menu_main.xml" value="0.203125" />
-        <entry key="..\:/Users/nefta/AndroidStudioProjects/PROYECTO-FINAL-DAUTE/app/src/main/res/layout/activity_acerca_de.xml" value="0.1644021739130435" />
-        <entry key="..\:/Users/nefta/AndroidStudioProjects/PROYECTO-FINAL-DAUTE/app/src/main/res/layout/activity_contactos.xml" value="0.1644021739130435" />
-        <entry key="..\:/Users/nefta/AndroidStudioProjects/PROYECTO-FINAL-DAUTE/app/src/main/res/layout/activity_menu_principal.xml" value="0.33" />
-        <entry key="..\:/Users/nefta/AndroidStudioProjects/PROYECTO-FINAL-DAUTE/app/src/main/res/layout/activity_registro.xml" value="0.1644021739130435" />
-        <entry key="..\:/Users/nefta/AndroidStudioProjects/PROYECTO-FINAL-DAUTE/app/src/main/res/layout/cerrar_sesion.xml" value="0.1644021739130435" />
       </map>
     </option>
   </component>
