@@ -9,9 +9,19 @@ public class Dto_notas implements Serializable {
   String fecha_hora_actual;
   String fecha_nota;
   String id_nota;
+
+  public String getUid() {
+    return uid;
+  }
+
+  public void setUid(String uid) {
+    this.uid = uid;
+  }
+
+  String uid;
   String titulo;
 
-  public String getCorreo_usario() {
+  public String getCorreo_usario(String correo) {
     return correo_usario;
   }
 
@@ -27,8 +37,8 @@ public class Dto_notas implements Serializable {
     this.descripcion = descripcion;
   }
 
-  public int getEstado() {
-    return estado;
+  public int getEstado(String estado) {
+    return this.estado;
   }
 
   public void setEstado(int estado) {
@@ -43,7 +53,7 @@ public class Dto_notas implements Serializable {
     this.fecha_hora_actual = fecha_hora_actual;
   }
 
-  public String getFecha_nota() {
+  public String getFecha_nota(String fecha) {
     return fecha_nota;
   }
 

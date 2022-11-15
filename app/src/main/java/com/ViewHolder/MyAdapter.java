@@ -25,9 +25,7 @@ public class MyAdapter extends FirestoreRecyclerAdapter<Dto_notas, MyAdapter.Myv
 
     @Override
     protected void onBindViewHolder(@NonNull MyviewHolder holder, int position, @NonNull Dto_notas notas) {
-        holder.titleTextView.setText(notas.getTitulo());
-        holder.contentTextView.setText(notas.getDescripcion());
-        holder.timestampTextView.setText(notas.getFecha_nota().toString());
+
 
     }
 

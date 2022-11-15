@@ -36,7 +36,7 @@ public class MenuPrincipal extends AppCompatActivity {
     TextView NombrePrincipal, CorreoPrincipal;
     Button btnagregar, btnmisnotas, btnimportantes, btncontacto, btnacerca, btnsalir;
 
-    FirebaseDatabase firebaseDatabase;
+
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
     DatabaseReference BASE_DE_DATOS;
@@ -53,8 +53,6 @@ public class MenuPrincipal extends AppCompatActivity {
         CerrarSesion=findViewById(R.id.btnsalir);
         firebaseAuth=FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
-        firebaseDatabase = FirebaseDatabase.getInstance();
-        BASE_DE_DATOS = firebaseDatabase.getReference("Usuarios");
 
         btnagregar=findViewById(R.id.btn_Agregar);
         btnmisnotas=findViewById(R.id.btn_Misnotas);
@@ -139,34 +137,6 @@ public class MenuPrincipal extends AppCompatActivity {
 
     }
 
-    //Metodo para verificar si el usuario a iniciado seccion
-
-    //Metodo para recuperar datos del usuario
-   // private void CargarDatos(){
-     //   Query query = BASE_DE_DATOS.orderByChild("correo").equalTo(firebaseUser);
-     //   query.addValueEventListener(new ValueEventListener() {
-         //   @Override
-          //  public void onDataChange(@NonNull DataSnapshot snapshot) {
-                //Recorremo, los usuarios en la base de datos
-            //    for (DataSnapshot ds : snapshot.getChildren()){
-
-                    //Obteniendo valores
-                  //  String uid= ""+ds.child("uid").getValue();
-                 //   String correo = ""+ds.child("correo").getValue();
-
-                    //Seteamos los datos
-
-
-                    //Declaramos los datos
-           //     }
-          //  }
-
-       //     @Override
-        //    public void onCancelled(@NonNull DatabaseError error) {
-
-        //    }
-       // });
-    //}
 
     private void SalirAplicacion() {
 
