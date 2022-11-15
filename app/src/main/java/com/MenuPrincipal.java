@@ -26,20 +26,23 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.auth.User;
 import com.vg.agenda_online.Agregar_Notas;
 import com.vg.agenda_online.R;
 
 public class MenuPrincipal extends AppCompatActivity {
 
     Button CerrarSesion;
-
-    TextView NombrePrincipal, CorreoPrincipal;
     Button btnagregar, btnmisnotas, btnimportantes, btncontacto, btnacerca, btnsalir;
 
 
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
+    FirebaseUser user;
     DatabaseReference BASE_DE_DATOS;
+
+    DatabaseReference Usuarios;
+    TextView idnombre, idcorreo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,12 +63,13 @@ public class MenuPrincipal extends AppCompatActivity {
         btncontacto=findViewById(R.id.btn_Contacto);
         btnacerca=findViewById(R.id.btn_Acerca);
 
+
         //firebaseDatabase = firebaseDatabase.getInstance();
         //Usuarios = firebaseDatabase.getReference("Usuarios");
 
         //
-        NombrePrincipal=findViewById(R.id.NombrePrincipal);
-        CorreoPrincipal=findViewById(R.id.CorreoPrincipal);
+        idnombre =findViewById(R.id.idnombre);
+        idcorreo =findViewById(R.id.idcorreo);
 
         btnagregar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -126,16 +130,42 @@ public class MenuPrincipal extends AppCompatActivity {
         });
 
 
-
-
-        CerrarSesion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                SalirAplicacion();
-            }
-        });
-
     }
+
+
+    //Metodo para verificar si el usuario a iniciado seccion
+
+    //Metodo para recuperar datos del usuario
+   private void CargarDatos(){
+        Query query = BASE_DE_DATOS.orderByChild("correo").equalTo(user.getEmail());
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                //Recorremo, los usuarios en la base de datos
+              for (DataSnapshot ds : snapshot.getChildren()){
+
+                    //Obteniendo valores
+                    String uid= ""+ds.child("uid").getValue();
+                    String correo = ""+ds.child("correo").getValue();
+
+                    //Seteamos los datos
+
+
+                    //Declaramos los datos
+            }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+
+            //     @Override
+        //    public void onCancelled(@NonNull DatabaseError error) {
+
+        //    }
+       // });
+    //}
 
 
     private void SalirAplicacion() {
@@ -165,4 +195,6 @@ public class MenuPrincipal extends AppCompatActivity {
     }
 
 
+});
+   }
 }

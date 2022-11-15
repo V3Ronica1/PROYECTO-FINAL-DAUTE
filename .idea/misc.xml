@@ -28,6 +28,15 @@
         <entry key="..\:/Users/MINEDUCYT/AndroidStudioProjects/Agenda_Online/app/src/main/res/layout/recycler_note_item.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/MINEDUCYT/AndroidStudioProjects/Agenda_Online/app/src/main/res/menu/menu_actualizar.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/MINEDUCYT/AndroidStudioProjects/Agenda_Online/app/src/main/res/menu/menu_main.xml" value="0.203125" />
+<<<<<<< HEAD
+        <entry key="..\:/Users/PC/Documents/PROYECTO-FINAL-DAUTE/app/src/main/res/layout/activity_menu_principal.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/nefta/AndroidStudioProjects/PROYECTO-FINAL-DAUTE/app/src/main/res/layout/activity_acerca_de.xml" value="0.1644021739130435" />
+        <entry key="..\:/Users/nefta/AndroidStudioProjects/PROYECTO-FINAL-DAUTE/app/src/main/res/layout/activity_contactos.xml" value="0.1644021739130435" />
+        <entry key="..\:/Users/nefta/AndroidStudioProjects/PROYECTO-FINAL-DAUTE/app/src/main/res/layout/activity_menu_principal.xml" value="0.33" />
+        <entry key="..\:/Users/nefta/AndroidStudioProjects/PROYECTO-FINAL-DAUTE/app/src/main/res/layout/activity_registro.xml" value="0.1644021739130435" />
+        <entry key="..\:/Users/nefta/AndroidStudioProjects/PROYECTO-FINAL-DAUTE/app/src/main/res/layout/cerrar_sesion.xml" value="0.1644021739130435" />
+=======
+>>>>>>> 712d66cf567a900e45206fa233f30ae1201ff456
       </map>
     </option>
   </component>
