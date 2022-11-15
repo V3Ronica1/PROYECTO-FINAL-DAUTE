@@ -17,7 +17,7 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="120dp"
-            app:cardBackgroundColor="@color/purple_200"
+            app:cardBackgroundColor="@color/icono_agenda_background"
             app:cardUseCompatPadding="true"
             android:padding="0.2dp"
             app:cardCornerRadius="5dp">
@@ -43,20 +43,28 @@
                     android:layout_marginTop="10dp"
                     android:layout_gravity="center"/>
 
+
+                <TextView
+                    android:id="@+id/uidperfil"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="--"
+                    android:textColor="@color/black"
+                    android:fontFamily="sans-serif-condensed"
+                    android:textSize="20sp"/>
+
                 <TextView
                     android:id="@+id/idnombre"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:visibility="gone"
                     android:text="--"
                     android:textColor="@color/black"
                     android:fontFamily="sans-serif-condensed"
                     android:textSize="20sp"/>
                 <TextView
                     android:id="@+id/idcorreo"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:visibility="gone"
                     android:text="--"
                     android:textColor="@color/black"
                     android:fontFamily="sans-serif-condensed"

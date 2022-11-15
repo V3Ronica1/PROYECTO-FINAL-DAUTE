@@ -38,11 +38,11 @@ public class MenuPrincipal extends AppCompatActivity {
 
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
-    FirebaseUser user;
+
+    FirebaseDatabase firebaseDatabase;
     DatabaseReference BASE_DE_DATOS;
 
-    DatabaseReference Usuarios;
-    TextView idnombre, idcorreo;
+    TextView uidperfil,idnombre, idcorreo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,8 +54,13 @@ public class MenuPrincipal extends AppCompatActivity {
 
 
         CerrarSesion=findViewById(R.id.btnsalir);
+
         firebaseAuth=FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
+
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        BASE_DE_DATOS = firebaseDatabase.getReference("Usuarios");
+
 
         btnagregar=findViewById(R.id.btn_Agregar);
         btnmisnotas=findViewById(R.id.btn_Misnotas);
@@ -64,12 +69,16 @@ public class MenuPrincipal extends AppCompatActivity {
         btnacerca=findViewById(R.id.btn_Acerca);
 
 
-        //firebaseDatabase = firebaseDatabase.getInstance();
-        //Usuarios = firebaseDatabase.getReference("Usuarios");
-
-        //
+        uidperfil=findViewById(R.id.uidperfil);
         idnombre =findViewById(R.id.idnombre);
         idcorreo =findViewById(R.id.idcorreo);
+
+        CerrarSesion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SalirAplicacion();
+            }
+        });
 
         btnagregar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -132,12 +141,27 @@ public class MenuPrincipal extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onStart() {
+        VerificacionIncioSesion();
+        super.onStart();
+    }
 
-    //Metodo para verificar si el usuario a iniciado seccion
+    //Metodo para verificar si el usuario a iniciado sesion previamente
+    private  void VerificacionIncioSesion(){
+        if (firebaseUser != null){
+            CargarDatos();
+            Toast.makeText(this, "Se ha inicado sesion", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            startActivity(new Intent(MenuPrincipal.this,MainActivity.class));
+            finish();
+        }
+    }
 
     //Metodo para recuperar datos del usuario
    private void CargarDatos(){
-        Query query = BASE_DE_DATOS.orderByChild("correo").equalTo(user.getEmail());
+        Query query = BASE_DE_DATOS.orderByChild("correo").equalTo(firebaseUser.getEmail());
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -147,11 +171,14 @@ public class MenuPrincipal extends AppCompatActivity {
                     //Obteniendo valores
                     String uid= ""+ds.child("uid").getValue();
                     String correo = ""+ds.child("correo").getValue();
+                    String nombres=""+ds.child("nombres").getValue();
 
-                    //Seteamos los datos
+                    //Seteamos los datos en  nuestras vistas
+                     uidperfil.setText(uid);
+                     idcorreo.setText(correo);
+                     idnombre.setText(nombres);
 
-
-                    //Declaramos los datos
+                     //Declaramos los datos
             }
             }
 
@@ -160,12 +187,9 @@ public class MenuPrincipal extends AppCompatActivity {
 
             }
 
-            //     @Override
-        //    public void onCancelled(@NonNull DatabaseError error) {
 
-        //    }
-       // });
-    //}
+        });
+   }
 
 
     private void SalirAplicacion() {
@@ -194,7 +218,8 @@ public class MenuPrincipal extends AppCompatActivity {
         
     }
 
-
-});
-   }
 }
+
+
+
+

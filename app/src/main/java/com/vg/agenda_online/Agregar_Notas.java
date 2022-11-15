@@ -126,7 +126,7 @@ public class Agregar_Notas extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         String titu = titulo.getText().toString();
         String des = descripcion.getText().toString();
-        String fecha= date.getText().toString();
+        String fecha= fecha_hora.getText().toString();
         String correo=correo_usuario.getText().toString();
         String estado=result.getText().toString();
         switch (item.getItemId()){
@@ -137,13 +137,13 @@ public class Agregar_Notas extends AppCompatActivity {
                 }
                 else {
                     Dto_notas notas = new Dto_notas();
-                    notas.setId_nota(UUID.randomUUID().toString());
+                    notas.setUid(UUID.randomUUID().toString());
                     notas.setTitulo(titu);
                     notas.setDescripcion(des);
                     notas.getFecha_nota(fecha);
                     notas.getCorreo_usario(correo);
                     notas.getEstado(estado);
-                    databaseReference.child("Notas Agregadas").child(notas.getId_nota()).setValue(notas);
+                    databaseReference.child("Notas Agregadas").child(notas.getUid()).setValue(notas);
                     Toast.makeText(this, "Agregar", Toast.LENGTH_SHORT).show();
                     limpiar();
 

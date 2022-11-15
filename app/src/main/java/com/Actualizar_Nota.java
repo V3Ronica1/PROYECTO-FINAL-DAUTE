@@ -31,7 +31,7 @@ import java.util.Locale;
 public class Actualizar_Nota extends AppCompatActivity {
 
 
-    TextView id_nota,correo_user,fecha_hora , date, result;
+    TextView correo_user,fecha_hora , date, result;
     EditText titulo, descripcion;
     Button btn_actualizar;
 
@@ -50,11 +50,12 @@ public class Actualizar_Nota extends AppCompatActivity {
         actionBar.setDisplayShowHomeEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-        id_nota =(TextView) findViewById(R.id.id_nota);
+
         correo_user=(TextView)findViewById(R.id.correo_user);
         fecha_hora=(TextView)findViewById(R.id.fecha_hora);
         titulo=(EditText)findViewById(R.id.titulo);
         descripcion=(EditText)findViewById(R.id.descripcion);
+
        // btn_actualizar=(Button)findViewById(R.id.btn_actualizar);
      //   databaseReference = FirebaseDatabase.getInstance().getReference("Notas Agregadas");
 
@@ -67,7 +68,7 @@ public class Actualizar_Nota extends AppCompatActivity {
         Dto_notas notas =null;
         if (objeto !=null){
             notas=(Dto_notas) objeto.getSerializable("notas");
-            id_nota.setText(""+notas.getId_nota());
+
             String correo="";
             correo_user.setText(notas.getCorreo_usario(correo));
             fecha_hora.setText("Fecha " + getDateTime());
@@ -170,12 +171,12 @@ public class Actualizar_Nota extends AppCompatActivity {
             case R.id.icon_actualizar:{
 
                   Dto_notas dtoNotas = new Dto_notas();
-                  dtoNotas.setId_nota(notasSelected.getId_nota());
+                  dtoNotas.setUid(notasSelected.getUid());
                   dtoNotas.setCorreo_usario(correo_user.getText().toString().trim());
                   dtoNotas.setFecha_nota(fecha_hora.getText().toString());
                   dtoNotas.setTitulo(titulo.getText().toString().trim());
                   dtoNotas.setDescripcion(descripcion.getText().toString().trim());
-                  databaseReference.child("Notas Agregadas").child(dtoNotas.getId_nota()).setValue(dtoNotas);
+                  databaseReference.child("Notas Agregadas").child(dtoNotas.getUid()).setValue(dtoNotas);
 
                 Toast.makeText(this, "Actualizado", Toast.LENGTH_SHORT).show();
 
