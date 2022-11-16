@@ -3,10 +3,15 @@ package com.Detalles;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import com.Importantes.Importante_Notas;
 import com.Objetos.Dto_notas;
 import com.vg.agenda_online.R;
 
@@ -19,6 +24,7 @@ public class Detalles_Notas extends AppCompatActivity {
     ListView listView;
     EditText txt_id,txt_correo,txt_titulo,txt_des, txt_fechanota;
     Dto_notas notasSelected;
+    Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +36,7 @@ public class Detalles_Notas extends AppCompatActivity {
         actionBar.setTitle("Detalles  Notas");
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
+
 
 
         txt_id=(EditText) findViewById(R.id.txt_id);

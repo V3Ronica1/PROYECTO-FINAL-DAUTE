@@ -10,21 +10,21 @@ import android.widget.Filterable;
 import android.widget.TextView;
 
 import com.FiltroBuscador.CustomFilter;
+import com.Objetos.Dto_notas;
 import com.Models.Persona;
 import com.Objetos.Dto_notas;
 import com.vg.agenda_online.R;
 
 import java.util.ArrayList;
 
-public class ListViewPersonasAdapter extends BaseAdapter implements Filterable {
+public class ListViewNotasAdapter extends BaseAdapter implements Filterable {
     Context context;
-    public ArrayList<Dto_notas> personaData;
-    public ArrayList<Dto_notas> filterList;
+    public ArrayList<Dto_notas> personaData, filterList;
     LayoutInflater layoutInflater;
     Dto_notas personaModel;
     CustomFilter filter;
 
-    public ListViewPersonasAdapter(Context context, ArrayList<Persona> personaData) {
+    public ListViewNotasAdapter(Context context, ArrayList<Dto_notas> personaData) {
         this.context = context;
         this.personaData = personaData;
         this.filterList = personaData;

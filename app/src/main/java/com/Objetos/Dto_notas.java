@@ -2,24 +2,23 @@ package com.Objetos;
 
 import java.io.Serializable;
 
-public class Dto_notas implements Serializable {
+public class Dto_notas  {
   String correo_usario;
   String descripcion;
   int estado;
   String fecha_hora_actual;
   String fecha_nota;
   String id_nota;
-
-  public String getUid() {
-    return uid;
-  }
-
-  public void setUid(String uid) {
-    this.uid = uid;
-  }
-
-  String uid;
   String titulo;
+  long timestamp;
+
+  public long getTimestamp() {
+    return timestamp;
+  }
+
+  public void setTimestamp(long timestamp) {
+    this.timestamp = timestamp;
+  }
 
   public String getCorreo_usario(String correo_usario) {
     return correo_usario;

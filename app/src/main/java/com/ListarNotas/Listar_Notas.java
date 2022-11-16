@@ -77,12 +77,12 @@ public class Listar_Notas extends AppCompatActivity {
         descripcion=(EditText)findViewById(R.id.descripcion);
         icon_add=findViewById(R.id.icon_add);
 
-        BASE_DE_DATOS = firebaseDatabase.getReference("Notas Agregadas");
+       //  BASE_DE_DATOS = firebaseDatabase.getReference("Notas Agregadas");
 
         Listar_Notas listar_notas = new Listar_Notas() ;
 
-        listView=findViewById(R.id.listview_notas);
-        searchView=(SearchView)findViewById(R.id.SearchView);
+        listView=findViewById(R.id.listViewNotas);
+
         dto_notasArrayAdapter = new ArrayAdapter<Dto_notas>(Listar_Notas.this, android.R.layout.simple_list_item_1,dto_notasList);
         listView.setAdapter(dto_notasArrayAdapter);
 
@@ -91,7 +91,7 @@ public class Listar_Notas extends AppCompatActivity {
         listarDatos();
 
 
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+      /*  searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
                 return false;
@@ -103,7 +103,7 @@ public class Listar_Notas extends AppCompatActivity {
                 dto_notasArrayAdapter.getFilter().filter(text);
                 return false;
             }
-        });
+        });*/
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -151,8 +151,8 @@ public class Listar_Notas extends AppCompatActivity {
                     public void onClick(View view) {
               if (notasSelected != null) {
                             Dto_notas notas = new Dto_notas();
-                            notas.setUid(notasSelected.getUid());
-                            databaseReference.child("Notas Agregadas").child(notas.getUid()).removeValue();
+                            notas.setId_nota(notasSelected.getId_nota());
+                            databaseReference.child("Notas Agregadas").child(notas.getId_nota()).removeValue();
                             notasSelected = null;
                         }
 
@@ -233,8 +233,8 @@ public class Listar_Notas extends AppCompatActivity {
 
                 if (notasSelected != null) {
                     Dto_notas notas = new Dto_notas();
-                    notas.setUid(notasSelected.getUid());
-                    databaseReference.child("Notas Agregadas").child(notas.getUid()).removeValue();
+                    notas.setId_nota(notasSelected.getId_nota());
+                    databaseReference.child("Notas Agregadas").child(notas.getId_nota()).removeValue();
                     notasSelected = null;
 
                     Toast.makeText(this, "Eliminado correctamente", Toast.LENGTH_SHORT).show();

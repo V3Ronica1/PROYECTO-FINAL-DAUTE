@@ -12,11 +12,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.Contacto.Contactos;
 import com.ListarNotas.Listar_Notas;
 import com.Objetos.Dto_notas;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -36,8 +39,10 @@ public class Actualizar_Nota extends AppCompatActivity {
     TextView correo_user,fecha_hora , date, result;
     EditText titulo, descripcion;
     Button icon_actualizar, icon_eliminar;
-
+    LinearLayout linearLayoutEditar;
     Module module;
+
+    FirebaseAuth firebaseAuth;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
     Dto_notas notasSelected;
@@ -58,6 +63,7 @@ public class Actualizar_Nota extends AppCompatActivity {
         titulo=(EditText)findViewById(R.id.titulo);
         descripcion=(EditText)findViewById(R.id.descripcion);
 
+        linearLayoutEditar = findViewById(R.id.linearLayoutEditar);
        // btn_actualizar=(Button)findViewById(R.id.btn_actualizar);
      //   databaseReference = FirebaseDatabase.getInstance().getReference("Notas Agregadas");
 
@@ -169,43 +175,23 @@ public class Actualizar_Nota extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+
         switch (item.getItemId()) {
-            case R.id.icon_actualizar: {
-
-
-                 /* Dto_notas dtoNotas = new Dto_notas();
-                  dtoNotas.setUid(notasSelected.getUid());
-                  dtoNotas.setCorreo_usario(correo_user.getText().toString().trim());
-                  dtoNotas.setFecha_nota(fecha_hora.getText().toString());
-                  dtoNotas.setTitulo(titulo.getText().toString().trim());
-                  dtoNotas.setDescripcion(descripcion.getText().toString().trim());
-                  databaseReference.child("Notas Agregadas").child(dtoNotas.getUid()).setValue(dtoNotas);*/
-
-                Dto_notas dtoNotas = new Dto_notas();
-                dtoNotas.setUid(notasSelected.getUid());
-                dtoNotas.setCorreo_usario(correo_user.getText().toString().trim());
-                dtoNotas.setFecha_nota(fecha_hora.getText().toString());
-                dtoNotas.setTitulo(titulo.getText().toString().trim());
-                dtoNotas.setDescripcion(descripcion.getText().toString().trim());
-                databaseReference.child("Notas Agregadas").child(dtoNotas.getUid()).setValue(dtoNotas);
-
-
+            case R.id.icon_actualizar:
+            {
+                String uid = firebaseAuth.getUid();
+                Dto_notas notas1 = new Dto_notas();
+                notas1.setId_nota(notasSelected.getId_nota().trim());
+                notas1.setTitulo(titulo.getText().toString().trim());
+                notas1.setDescripcion(descripcion.getText().toString().trim());
+                databaseReference.child("Notas Agregadas").child(notas1.getId_nota()).setValue(notas1);
                 Toast.makeText(this, "Actualizado", Toast.LENGTH_SHORT).show();
-
                 break;
-            }
-            case R.id.icon_eliminar: {
 
-                if (notasSelected != null) {
-                    Dto_notas notas = new Dto_notas();
-                    notas.setUid(notasSelected.getUid());
-                    databaseReference.child("Notas Agregadas").child(notas.getUid()).removeValue();
-                    notasSelected = null;
+           }
 
-                    Toast.makeText(this, "Eliminado correctamente", Toast.LENGTH_SHORT).show();
-                    break;
-                }
-            }
+
         }
             return super.onOptionsItemSelected(item);
 
