@@ -9,11 +9,6 @@
         android:title="Agregar icono"
         app:showAsAction="ifRoom|withText"/>
 
-    <item android:id="@+id/icon_add"
-        android:icon="@drawable/ic_add"
-        android:title="Edit"
-        app:showAsAction="always"/>
-
     <item android:id="@+id/icon_save"
         android:icon="@drawable/ic_save"
         android:title="Edit"

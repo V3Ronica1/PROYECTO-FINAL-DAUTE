@@ -22,18 +22,20 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.vg.agenda_online.Agregar_Notas;
 import com.vg.agenda_online.R;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import java.util.UUID;
 
 public class Actualizar_Nota extends AppCompatActivity {
 
 
     TextView correo_user,fecha_hora , date, result;
     EditText titulo, descripcion;
-    Button btn_actualizar;
+    Button icon_actualizar, icon_eliminar;
 
     Module module;
     FirebaseDatabase firebaseDatabase;
@@ -167,24 +169,39 @@ public class Actualizar_Nota extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.icon_actualizar:{
+        switch (item.getItemId()) {
+            case R.id.icon_actualizar: {
 
-                  Dto_notas dtoNotas = new Dto_notas();
-                  dtoNotas.setUid(notasSelected.getUid());
-                  dtoNotas.setCorreo_usario(correo_user.getText().toString().trim());
-                  dtoNotas.setFecha_nota(fecha_hora.getText().toString());
-                  dtoNotas.setTitulo(titulo.getText().toString().trim());
-                  dtoNotas.setDescripcion(descripcion.getText().toString().trim());
-                  databaseReference.child("Notas Agregadas").child(dtoNotas.getUid()).setValue(dtoNotas);
+                Dto_notas dtoNotas = new Dto_notas();
+                dtoNotas.setUid(notasSelected.getUid());
+                dtoNotas.setCorreo_usario(correo_user.getText().toString().trim());
+                dtoNotas.setFecha_nota(fecha_hora.getText().toString());
+                dtoNotas.setTitulo(titulo.getText().toString().trim());
+                dtoNotas.setDescripcion(descripcion.getText().toString().trim());
+                databaseReference.child("Notas Agregadas").child(dtoNotas.getUid()).setValue(dtoNotas);
 
                 Toast.makeText(this, "Actualizado", Toast.LENGTH_SHORT).show();
 
                 break;
             }
+            case R.id.icon_eliminar: {
+
+                if (notasSelected != null) {
+                    Dto_notas notas = new Dto_notas();
+                    notas.setUid(notasSelected.getUid());
+                    databaseReference.child("Notas Agregadas").child(notas.getUid()).removeValue();
+                    notasSelected = null;
+
+                    Toast.makeText(this, "Eliminado correctamente", Toast.LENGTH_SHORT).show();
+                    break;
+                }
+            }
         }
-        return super.onOptionsItemSelected(item);
+            return super.onOptionsItemSelected(item);
+
     }
+
+
 
     @Override
     public boolean onSupportNavigateUp() {

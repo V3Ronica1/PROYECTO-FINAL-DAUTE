@@ -130,7 +130,7 @@ public class Agregar_Notas extends AppCompatActivity {
         String correo=correo_usuario.getText().toString();
         String estado=result.getText().toString();
         switch (item.getItemId()){
-            case R.id.icon_add:{
+            case R.id.icon_save:{
                 if (titu.equals("")|| des.equals("")) {
                     validacion();
 
@@ -148,10 +148,6 @@ public class Agregar_Notas extends AppCompatActivity {
                     limpiar();
 
                 }
-                break;
-            }
-            case R.id.icon_save:{
-                Toast.makeText(this, "Guardar", Toast.LENGTH_SHORT).show();
                 break;
             }
             case R.id.icon_atras:{
