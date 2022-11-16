@@ -9,12 +9,12 @@
     <com.airbnb.lottie.LottieAnimationView
         android:layout_width="400dp"
         android:layout_height="400dp"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
         app:lottie_autoPlay="true"
         app:lottie_fileName="acercade.json"
         app:lottie_imageAssetsFolder="assets"
-        app:lottie_loop="true"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:layout_centerHorizontal="true"/>
+        app:lottie_loop="true" />
 
 </RelativeLayout>

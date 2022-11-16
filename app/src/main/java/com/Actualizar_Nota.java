@@ -170,13 +170,13 @@ public class Actualizar_Nota extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.icon_actualizar:{
 
-                  Dto_notas dtoNotas = new Dto_notas();
+                 /* Dto_notas dtoNotas = new Dto_notas();
                   dtoNotas.setUid(notasSelected.getUid());
                   dtoNotas.setCorreo_usario(correo_user.getText().toString().trim());
                   dtoNotas.setFecha_nota(fecha_hora.getText().toString());
                   dtoNotas.setTitulo(titulo.getText().toString().trim());
                   dtoNotas.setDescripcion(descripcion.getText().toString().trim());
-                  databaseReference.child("Notas Agregadas").child(dtoNotas.getUid()).setValue(dtoNotas);
+                  databaseReference.child("Notas Agregadas").child(dtoNotas.getUid()).setValue(dtoNotas);*/
 
                 Toast.makeText(this, "Actualizado", Toast.LENGTH_SHORT).show();
 

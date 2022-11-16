@@ -137,13 +137,13 @@ public class Agregar_Notas extends AppCompatActivity {
                 }
                 else {
                     Dto_notas notas = new Dto_notas();
-                    notas.setUid(UUID.randomUUID().toString());
+                    notas.setId_nota(UUID.randomUUID().toString());
                     notas.setTitulo(titu);
                     notas.setDescripcion(des);
                     notas.getFecha_nota(fecha);
                     notas.getCorreo_usario(correo);
                     notas.getEstado(estado);
-                    databaseReference.child("Notas Agregadas").child(notas.getUid()).setValue(notas);
+                    databaseReference.child("Notas Agregadas").child(notas.getId_nota()).setValue(notas);
                     Toast.makeText(this, "Agregar", Toast.LENGTH_SHORT).show();
                     limpiar();
 

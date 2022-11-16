@@ -4,7 +4,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -25,6 +27,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.vg.agenda_online.R;
 
@@ -44,6 +47,8 @@ public class Listar_Notas extends AppCompatActivity {
 
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
+
+    DatabaseReference BASE_DE_DATOS;
 
     Dto_notas notasSelected;
     TextView id_usuario,correo_user,fecha_hora;
@@ -65,6 +70,7 @@ public class Listar_Notas extends AppCompatActivity {
         titulo=(EditText)findViewById(R.id.titulo);
         descripcion=(EditText)findViewById(R.id.descripcion);
 
+        BASE_DE_DATOS = firebaseDatabase.getReference("Notas Agregadas");
 
         Listar_Notas listar_notas = new Listar_Notas() ;
 
@@ -136,7 +142,7 @@ public class Listar_Notas extends AppCompatActivity {
                 CD_Eliminar.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-
+                       
                     }
                 });
                 CD_Actualizar.setOnClickListener(new View.OnClickListener() {
@@ -209,7 +215,32 @@ public class Listar_Notas extends AppCompatActivity {
 
     }
 
+    /* private void EliminarNota(String id_nota){
+         AlertDialog.Builder builder = new AlertDialog.Builder(Listar_Notas.this);
+         builder.setTitle("Eliminar Nota");
+         builder.setMessage("¿Desea eliminar la nota?");
+         builder.setPositiveButton("si", new DialogInterface.OnClickListener() {
+             @Override
+             public void onClick(DialogInterface dialogInterface, int i) {
+                 Query query = BASE_DE_DATOS.orderByChild("id_nota").equalTo(id_nota);
+                 query.addListenerForSingleValueEvent(new ValueEventListener() {
+                     @Override
+                     public void onDataChange(@NonNull DataSnapshot snapshot) {
+                         for(DataSnapshot ds : snapshot.getChildren()){
+                             ds.getRef().removeValue();
+                         }
+                         Toast.makeText(Listar_Notas.this, "Nota Eliminada", Toast.LENGTH_SHORT).show();
+                     }
 
+                     @Override
+                     public void onCancelled(@NonNull DatabaseError error) {
+
+                     }
+                 });
+             }
+         });
+
+     }*/
 
     private void incializarFirebase() {
         FirebaseApp.initializeApp(this);
