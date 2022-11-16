@@ -9,6 +9,8 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -21,6 +23,7 @@ import android.widget.Toast;
 
 import com.Actualizar_Nota;
 import com.Detalles.Detalles_Notas;
+import com.MenuPrincipal;
 import com.Objetos.Dto_notas;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;
@@ -29,12 +32,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.vg.agenda_online.Agregar_Notas;
 import com.vg.agenda_online.R;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
+import java.util.UUID;
 
 public class Listar_Notas extends AppCompatActivity {
 
@@ -53,6 +58,7 @@ public class Listar_Notas extends AppCompatActivity {
     Dto_notas notasSelected;
     TextView id_usuario,correo_user,fecha_hora;
     EditText titulo, descripcion;
+    Button icon_add;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +75,7 @@ public class Listar_Notas extends AppCompatActivity {
         fecha_hora=(TextView)findViewById(R.id.fecha_hora);
         titulo=(EditText)findViewById(R.id.titulo);
         descripcion=(EditText)findViewById(R.id.descripcion);
+        icon_add=findViewById(R.id.icon_add);
 
         BASE_DE_DATOS = firebaseDatabase.getReference("Notas Agregadas");
 
@@ -142,7 +149,13 @@ public class Listar_Notas extends AppCompatActivity {
                 CD_Eliminar.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                       
+              if (notasSelected != null) {
+                            Dto_notas notas = new Dto_notas();
+                            notas.setUid(notasSelected.getUid());
+                            databaseReference.child("Notas Agregadas").child(notas.getUid()).removeValue();
+                            notasSelected = null;
+                        }
+
                     }
                 });
                 CD_Actualizar.setOnClickListener(new View.OnClickListener() {
@@ -211,7 +224,31 @@ public class Listar_Notas extends AppCompatActivity {
 
         });
 
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.icon_eliminar: {
+
+                if (notasSelected != null) {
+                    Dto_notas notas = new Dto_notas();
+                    notas.setUid(notasSelected.getUid());
+                    databaseReference.child("Notas Agregadas").child(notas.getUid()).removeValue();
+                    notasSelected = null;
+
+                    Toast.makeText(this, "Eliminado correctamente", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
+        return super.onOptionsItemSelected(item);
+
+    }
+
+     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_listar_notas,menu);
+        return super.onCreateOptionsMenu(menu);
 
     }
 

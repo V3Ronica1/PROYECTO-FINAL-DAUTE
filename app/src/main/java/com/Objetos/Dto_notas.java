@@ -21,7 +21,7 @@ public class Dto_notas implements Serializable {
   String uid;
   String titulo;
 
-  public String getCorreo_usario(String correo) {
+  public String getCorreo_usario(String correo_usario) {
     return correo_usario;
   }
 
