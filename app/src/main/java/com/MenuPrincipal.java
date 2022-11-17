@@ -28,12 +28,13 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.auth.User;
 import com.vg.agenda_online.Agregar_Notas;
+import com.vg.agenda_online.Ayuda;
 import com.vg.agenda_online.R;
 
 public class MenuPrincipal extends AppCompatActivity {
 
     Button CerrarSesion;
-    Button btnagregar, btnmisnotas, btnimportantes, btncontacto, btnacerca, btnsalir;
+    Button btnagregar, btnmisnotas, btnimportantes, btncontacto, btnacerca, btnsalir, btn_sobreapp;
 
     FirebaseDatabase firebaseDatabase;
     FirebaseAuth firebaseAuth;
@@ -63,6 +64,7 @@ public class MenuPrincipal extends AppCompatActivity {
         btnimportantes=findViewById(R.id.btn_Importantes);
         btncontacto=findViewById(R.id.btn_Contacto);
         btnacerca=findViewById(R.id.btn_Acerca);
+        btn_sobreapp=findViewById(R.id.btn_sobreapp);
 
         firebaseDatabase = firebaseDatabase.getInstance();
         Usuarios = firebaseDatabase.getReference("Usuarios");
@@ -130,6 +132,12 @@ public class MenuPrincipal extends AppCompatActivity {
                 builder.show();
             }
 
+        });
+        btn_sobreapp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MenuPrincipal.this, Ayuda.class));
+            }
         });
 
 

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/purple_200"
+    tools:context=".Ayuda">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:text="BIENVENIDOS A LA SECCION DE AYUDA"
+            android:textSize="21dp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif"
+            />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="help.json"
+            app:lottie_imageAssetsFolder="assets"
+            app:lottie_loop="true" />
+
+        <Button
+            android:id="@+id/btn_ayuda"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/kanitbold"
+            android:onClick="comoCrear"
+            android:text="@string/btn_ayuda" />
+
+        <Button
+            android:id="@+id/btn_NoteMisnotas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/kanitbold"
+            android:onClick="misnotas"
+            android:text="@string/btn_noteimportante" />
+
+        <Button
+            android:id="@+id/btn_notecontacto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/kanitbold"
+            android:onClick="contacto"
+            android:text="@string/btn_notecontact" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_acercade"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/kanitbold"
+            android:onClick="acercade"
+            android:text="@string/btn_ayudade"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_salir"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/kanitbold"
+            android:text="@string/btn_salir" />
+
+
+
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+    </ScrollView>
+</androidx.appcompat.widget.LinearLayoutCompat>

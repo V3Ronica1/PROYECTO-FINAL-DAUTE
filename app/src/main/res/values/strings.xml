@@ -25,6 +25,13 @@
     <string name="Btn_Logeo">Ingresar</string>
     <string name="usuarionuevotxt">No tienes una cuenta?. Registrate</string>
 
+    <!--Ayuda-->
+    <string name="btn_ayuda">Sección Agregar</string>
+    <string name="btn_noteimportante">Sección Mis Notas</string>
+    <string name="btn_notecontact">Sección Mis Contacto</string>
+    <string name="btn_ayudade">Sección Acerca</string>
+    <string name="btn_salir">Sección Salir</string>
+
     <!---Menu principal-->
     <string name="BienvenidoPrincipal">Bienvenido(a)</string>
     <string name="NombresPrincipal"> -- </string>
