@@ -3,19 +3,16 @@ package com.Detalles;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
+import android.widget.Toast;
 
-import com.ListarNotas.Listar_Notas;
+import com.Importantes.Importante_Notas;
 import com.Objetos.Dto_notas;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.vg.agenda_online.R;
 
 import java.text.SimpleDateFormat;
@@ -27,6 +24,7 @@ public class Detalles_Notas extends AppCompatActivity {
     ListView listView;
     EditText txt_id,txt_correo,txt_titulo,txt_des, txt_fechanota;
     Dto_notas notasSelected;
+    Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +36,7 @@ public class Detalles_Notas extends AppCompatActivity {
         actionBar.setTitle("Detalles  Notas");
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
+
 
 
         txt_id=(EditText) findViewById(R.id.txt_id);
@@ -53,7 +52,8 @@ public class Detalles_Notas extends AppCompatActivity {
         if (objeto !=null){
             notas=(Dto_notas) objeto.getSerializable("notas");
             txt_id.setText(""+notas.getId_nota());
-            txt_correo.setText(notas.getCorreo_usario());
+            String correo="";
+            txt_correo.setText(notas.getCorreo_usario(correo));
             txt_titulo.setText(notas.getTitulo());
             txt_des.setText(notas.getDescripcion());
             txt_fechanota.setText(""+getDateTime());

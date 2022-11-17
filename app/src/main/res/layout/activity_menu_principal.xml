@@ -22,7 +22,7 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="120dp"
-            app:cardBackgroundColor="@color/purple_200"
+            app:cardBackgroundColor="@color/icono_agenda_background"
             app:cardUseCompatPadding="true"
             android:padding="0.2dp"
             app:cardCornerRadius="5dp">
@@ -31,6 +31,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
+                android:gravity="center"
                 android:orientation="vertical">
 
                 <TextView
@@ -39,33 +40,15 @@
                     android:text="@string/BienvenidoPrincipal"
                     android:textColor="@color/black"
                     android:fontFamily="sans-serif-condensed"
-                    android:textSize="20sp"/>
+                    android:textSize="30sp"/>
 
-                <ProgressBar
-                    android:id="@+id/ProgresBar"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_gravity="center"/>
-
-                <TextView
-                    android:id="@+id/idnombre"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone"
-                    android:text="--"
-                    android:textColor="@color/black"
-                    android:fontFamily="sans-serif-condensed"
-                    android:textSize="20sp"/>
-                <TextView
-                    android:id="@+id/idcorreo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone"
-                    android:text="--"
-                    android:textColor="@color/black"
-                    android:fontFamily="sans-serif-condensed"
-                    android:textSize="20sp"/>
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="A tu agenda personal."
+                   android:textColor="@color/black"
+                   android:fontFamily="sans-serif-condensed"
+                   android:textSize="30sp"/>
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 

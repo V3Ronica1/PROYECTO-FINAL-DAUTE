@@ -2,7 +2,7 @@ package com.Objetos;
 
 import java.io.Serializable;
 
-public class Dto_notas implements Serializable {
+public class Dto_notas  {
   String correo_usario;
   String descripcion;
   int estado;
@@ -10,8 +10,17 @@ public class Dto_notas implements Serializable {
   String fecha_nota;
   String id_nota;
   String titulo;
+  long timestamp;
 
-  public String getCorreo_usario() {
+  public long getTimestamp() {
+    return timestamp;
+  }
+
+  public void setTimestamp(long timestamp) {
+    this.timestamp = timestamp;
+  }
+
+  public String getCorreo_usario(String correo_usario) {
     return correo_usario;
   }
 
@@ -27,8 +36,8 @@ public class Dto_notas implements Serializable {
     this.descripcion = descripcion;
   }
 
-  public int getEstado() {
-    return estado;
+  public int getEstado(String estado) {
+    return this.estado;
   }
 
   public void setEstado(int estado) {
@@ -43,7 +52,7 @@ public class Dto_notas implements Serializable {
     this.fecha_hora_actual = fecha_hora_actual;
   }
 
-  public String getFecha_nota() {
+  public String getFecha_nota(String fecha) {
     return fecha_nota;
   }
 

@@ -37,6 +37,7 @@
     <Button
         android:id="@+id/CD_Actualizar"
         android:text="@string/CD_Actualizar"
+        android:onClick="Eliminar"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/kanitbold"
         android:layout_width="match_parent"

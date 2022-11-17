@@ -3,9 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/MINEDUCYT/AndroidStudioProjects/Agenda_Online/app/src/main/res/drawable/ic_actualizar.xml" value="0.165" />
         <entry key="..\:/Users/MINEDUCYT/AndroidStudioProjects/Agenda_Online/app/src/main/res/drawable/ic_add.xml" value="0.2" />
         <entry key="..\:/Users/MINEDUCYT/AndroidStudioProjects/Agenda_Online/app/src/main/res/drawable/ic_back.xml" value="0.2" />
         <entry key="..\:/Users/MINEDUCYT/AndroidStudioProjects/Agenda_Online/app/src/main/res/drawable/ic_save.xml" value="0.2" />
+        <entry key="..\:/Users/MINEDUCYT/AndroidStudioProjects/Agenda_Online/app/src/main/res/layout/activity_actualizar_nota.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/MINEDUCYT/AndroidStudioProjects/Agenda_Online/app/src/main/res/layout/activity_agregar_notas.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/MINEDUCYT/AndroidStudioProjects/Agenda_Online/app/src/main/res/layout/activity_contactos.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/MINEDUCYT/AndroidStudioProjects/Agenda_Online/app/src/main/res/layout/activity_contactos2.xml" value="0.20416666666666666" />
@@ -24,6 +26,7 @@
         <entry key="..\:/Users/MINEDUCYT/AndroidStudioProjects/Agenda_Online/app/src/main/res/layout/listar_notas.xml" value="0.19010416666666666" />
         <entry key="..\:/Users/MINEDUCYT/AndroidStudioProjects/Agenda_Online/app/src/main/res/layout/recycle_rview.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/MINEDUCYT/AndroidStudioProjects/Agenda_Online/app/src/main/res/layout/recycler_note_item.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/MINEDUCYT/AndroidStudioProjects/Agenda_Online/app/src/main/res/menu/menu_actualizar.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/MINEDUCYT/AndroidStudioProjects/Agenda_Online/app/src/main/res/menu/menu_main.xml" value="0.203125" />
 <<<<<<< HEAD
         <entry key="..\:/Users/PC/Documents/PROYECTO-FINAL-DAUTE/app/src/main/res/layout/activity_menu_principal.xml" value="0.20416666666666666" />

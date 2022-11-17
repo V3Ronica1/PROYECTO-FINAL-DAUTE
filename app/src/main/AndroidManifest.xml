@@ -14,7 +14,11 @@
         android:theme="@style/Theme.Agenda_Online"
         tools:targetApi="31">
         <activity
+<<<<<<< HEAD
             android:name=".Ayuda"
+=======
+            android:name="com.Actualizar_Nota"
+>>>>>>> 344c1e6202de939399bfabb68b7ac0f5a2d5b594
             android:exported="false" />
         <activity
             android:name="com.Detalles.Detalles_Notas"

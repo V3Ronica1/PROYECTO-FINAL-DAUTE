@@ -126,10 +126,12 @@ public class Agregar_Notas extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         String titu = titulo.getText().toString();
         String des = descripcion.getText().toString();
-
+        String fecha= fecha_hora.getText().toString();
+        String correo=correo_usuario.getText().toString();
+        String estado=result.getText().toString();
         switch (item.getItemId()){
-            case R.id.icon_add:{
-                if (titu.equals("")|| des.equals("")){
+            case R.id.icon_save:{
+                if (titu.equals("")|| des.equals("")) {
                     validacion();
 
                 }
@@ -138,15 +140,14 @@ public class Agregar_Notas extends AppCompatActivity {
                     notas.setId_nota(UUID.randomUUID().toString());
                     notas.setTitulo(titu);
                     notas.setDescripcion(des);
+                    notas.getFecha_nota(fecha);
+                    notas.getCorreo_usario(correo);
+                    notas.getEstado(estado);
                     databaseReference.child("Notas Agregadas").child(notas.getId_nota()).setValue(notas);
                     Toast.makeText(this, "Agregar", Toast.LENGTH_SHORT).show();
                     limpiar();
 
                 }
-                break;
-            }
-            case R.id.icon_save:{
-                Toast.makeText(this, "Guardar", Toast.LENGTH_SHORT).show();
                 break;
             }
             case R.id.icon_atras:{

@@ -1,14 +1,6 @@
 package com.Contacto;
 
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.Toast;
-
-import com.vg.agenda_online.R;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,16 +11,25 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SearchView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 
+import com.Adaptadores.ListViewNotasAdapter;
 import com.Adaptadores.ListViewPersonasAdapter;
+import com.Adpatadores.ListViewNotasAdapter;
 import com.Models.Persona;
+import com.Objetos.Dto_notas;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.vg.agenda_online.R;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -36,25 +37,25 @@ import java.util.Calendar;
 import java.util.TimeZone;
 import java.util.UUID;
 
-public class Contactos extends AppCompatActivity {
+public class Notas1 extends AppCompatActivity {
 
-    private ArrayList<Persona> listPersonas= new ArrayList<Persona>();
-    ArrayAdapter<Persona> arrayAdapterPersona;
-    ListViewPersonasAdapter listViewPersonasAdapter;
+    private ArrayList<Dto_notas> listNotas= new ArrayList<Dto_notas>();
+    ArrayAdapter<Dto_notas> arrayAdapterPersona;
+    ListViewNotasAdapter listViewPersonasAdapter;
     LinearLayout linearLayoutEditar;
     ListView listViewPersonas;
 
     EditText inputNombre, inputTelefono;
     Button btnCancelar;
 
-    Persona personaSeleccionada;
+    Dto_notas personaSeleccionada;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_contactos);
+        setContentView(R.layout.listar_notas_nuevo);
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("Mis Contactos");
@@ -71,9 +72,9 @@ public class Contactos extends AppCompatActivity {
         listViewPersonas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                personaSeleccionada = (Persona) parent.getItemAtPosition(position);
-                inputNombre.setText(personaSeleccionada.getNombres());
-                inputTelefono.setText(personaSeleccionada.getTelefono());
+                personaSeleccionada = (Dto_notas) parent.getItemAtPosition(position);
+                inputNombre.setText(personaSeleccionada.getTitulo());
+                inputTelefono.setText(personaSeleccionada.getDescripcion());
                 //hacer visible el linearlayout
                 linearLayoutEditar.setVisibility(View.VISIBLE);
             }
@@ -97,16 +98,16 @@ public class Contactos extends AppCompatActivity {
     }
 
     private void listarPersonas(){
-        databaseReference.child("Personas").orderByChild("timestamp").addValueEventListener(new ValueEventListener() {
+        databaseReference.child("Notas Agregadas").orderByChild("timestamp").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                listPersonas.clear();
+                listNotas.clear();
                 for(DataSnapshot objSnaptshot : dataSnapshot.getChildren()){
-                    Persona p = objSnaptshot.getValue(Persona.class);
-                    listPersonas.add(p);
+                    Dto_notas notas = objSnaptshot.getValue(Dto_notas.class);
+                    listNotas.add(notas);
                 }
                 //iniciar nuestro adaptador
-                listViewPersonasAdapter = new ListViewPersonasAdapter(Contactos.this, listPersonas);
+                listViewPersonasAdapter = new ListViewPersonasAdapter(Notas1.this, listNotas);
                 // arrayAdapterPersona = new ArrayAdapter<Persona>(MainActivity.this,android.R.layout.simple_list_item_1,listPersonas);
                 listViewPersonas.setAdapter(listViewPersonasAdapter);
             }
@@ -157,10 +158,10 @@ public class Contactos extends AppCompatActivity {
                 if(personaSeleccionada != null){
                     if(validarInputs()==false){
                         Persona p = new Persona();
-                        p.setIdpersona(personaSeleccionada.getIdpersona());
+                        p.setIdpersona(personaSeleccionada.getId_nota());
                         p.setNombres(nombres);
                         p.setTelefono(telefono);
-                        p.setFecharegistro(personaSeleccionada.getFecharegistro());
+                        p.setFecharegistro(personaSeleccionada.getTitulo());
                         p.setTimestamp(personaSeleccionada.getTimestamp());
                         databaseReference.child("Personas").child(p.getIdpersona()).setValue(p);
                         Toast.makeText(this, "Actualizado Correctamente", Toast.LENGTH_LONG).show();
@@ -175,7 +176,7 @@ public class Contactos extends AppCompatActivity {
             case R.id.menu_eliminar:
                 if(personaSeleccionada!=null){
                     Persona p2 = new Persona();
-                    p2.setIdpersona(personaSeleccionada.getIdpersona());
+                    p2.setIdpersona(personaSeleccionada.getId_nota());
                     databaseReference.child("Personas").child(p2.getIdpersona()).removeValue();
                     linearLayoutEditar.setVisibility(View.GONE);
                     personaSeleccionada = null;
@@ -191,7 +192,7 @@ public class Contactos extends AppCompatActivity {
     }
     public void insertar(){
         AlertDialog.Builder mBuilder = new AlertDialog.Builder(
-                Contactos.this
+                Notas1.this
         );
         View mView = getLayoutInflater().inflate(R.layout.contactos, null);
         Button btnInsertar = (Button) mView.findViewById(R.id.btnInsertar);
@@ -219,7 +220,7 @@ public class Contactos extends AppCompatActivity {
                     p.setFecharegistro(getFechaNormal(getFechaMilisegundos()));
                     p.setTimestamp(getFechaMilisegundos() * -1);
                     databaseReference.child("Personas").child(p.getIdpersona()).setValue(p);
-                    Toast.makeText(Contactos.this, "Registrado Correctamente", Toast.LENGTH_LONG).show();
+                    Toast.makeText(Notas1.this, "Registrado Correctamente", Toast.LENGTH_LONG).show();
 
                     dialog.dismiss();
                 }
